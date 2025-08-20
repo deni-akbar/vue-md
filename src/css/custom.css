@@ -1,0 +1,166 @@
+.select-wrapper {
+  margin-top: 10px; /* jarak dari heading */
+}
+.custom-select .md-field {
+  border-radius: 12px;      /* membuat rounded */
+  font-size: 0.85rem;       /* lebih kecil */
+  padding: 0.25rem 0.5rem;  /* sesuaikan padding */
+}
+
+.custom-select .md-select-dropdown {
+  border-radius: 12px;      /* dropdown juga rounded */
+  font-size: 0.85rem;       /* dropdown lebih kecil */
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1rem 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: flex-start; 
+}
+
+.empty-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  margin-top: 2rem;
+  background: #fff;
+}
+
+.illustration {
+  width: 200px;
+  margin-bottom: 1rem;
+}
+
+.add-button {
+  margin-top: 1rem;
+  --md-sys-color-primary: #4CAF50; /* hijau */
+}
+
+.footer {
+  text-align: left;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  left: 420px;
+  z-index: 10;
+}
+
+.modal-button {
+  background-color: #4caf50;  /* warna ungu solid seperti md-filled-button */
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 12px;
+  text-transform: none;       /* biar tidak uppercase otomatis */
+  height: 48px;
+  margin-top: 16px;
+  transition: background-color 0.3s;
+}
+
+.add-button .btn-content {
+  display: inline-flex;
+  align-items: center; /* vertikal center */
+  gap: 8px;            /* jarak antara ikon dan teks */
+}
+/* .v-selection-control__input input {
+  position: static !important;
+} */
+
+html {
+  color-scheme: light;
+}
+body {
+  background-color: #fff;
+  color: #000;
+}
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+}
+section {
+  width: 900px;
+  min-height: 340px;
+  max-height: 600px;
+  overflow-y: auto;
+  margin: 0 auto;
+  background: #fff;
+  /* padding: 24px 0; */
+}
+.custom-select {
+  border-radius: 12px;      /* membuat rounded */
+  font-size: 16px;           /* ukuran font lebih kecil */
+  display: flex;
+  align-items: center;
+}
+
+.discount-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+.discount-table th, .discount-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.discount-table th {
+  background: #f5f5f5;
+}
+
+.option-icon {
+  margin-right: 8px;         /* jarak antara icon dan text */
+}
+/* Paksa hilangkan position absolute pada v-checkbox */
+.v-checkbox {
+  position: static !important;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Bagi kiri-kanan */
+  padding: 0.5rem 1rem;
+}
+
+.header > div {
+  display: flex;
+  flex-direction: column; /* Judul + select tetap satu kolom */
+  gap: 0.5rem;
+}
+
+.flex-button {
+  height: 40px; /* biar konsisten */
+  align-self: flex-start; /* posisikan ke atas */
+}
+
+.delete-button {
+  --md-filled-button-container-color: #e53935; /* warna background merah */
+  --md-filled-button-label-text-color: #fff;   /* warna teks putih */
+}
+
+.delete-button:hover {
+  --md-filled-button-container-color: #c62828; /* merah lebih gelap saat hover */
+}
