@@ -31,7 +31,7 @@ watch(checkedIds, (val) => {
               class="mr-5"
               hide-details
               density="compact"
-              color="primary"
+              color="success"
               :model-value="checkedIds.includes(diskon._id)"
               @update:model-value="val => {
                 if (val) {

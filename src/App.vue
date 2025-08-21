@@ -4,7 +4,9 @@ import Empty from './components/Empty.vue'
 import List from './components/List.vue'
 import Modal from './components/Modal.vue'
 import EditModal from './components/EditModal.vue'
+import ConfirmModal from './components/ConfirmModal.vue'
 
+const confirmDialog = ref(false)
 // Ganti dengan endpoint API kamu dari crudcrud.com
 const API_URL = 'https://crudcrud.com/api/e4448f5babfb4c8ab46cd28d79ffc109/discounts'
 
@@ -31,6 +33,8 @@ const snackbar = ref(false)
 const snackbarText = ref('')
 const snackbarColor = ref('success')
 
+
+
 // Fetch data diskon dari API
 const fetchDiscounts = async () => {
   loadingDiscounts.value = true
@@ -49,7 +53,7 @@ const fetchDiscounts = async () => {
 
 // Fetch saat komponen mounted dan saat outlet berubah
 onMounted(fetchDiscounts)
-watch(selectedOutlet, fetchDiscounts)
+watch([selectedOutlet], fetchDiscounts)
 
 // Form data
 const form = ref({
@@ -169,6 +173,21 @@ const deleteSelected = async () => {
   checkedDiscounts.value = [];
   await fetchDiscounts();
 }
+
+const handleConfirmDelete = async () => {
+  if (checkedDiscounts.value.length === 0) return;
+  for (const id of checkedDiscounts.value) {
+    try {
+      await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+    } catch (err) {
+      console.error('Gagal hapus diskon', id, err);
+    }
+  }
+  checkedDiscounts.value = [];
+  await fetchDiscounts();
+  showSnackbar('Diskon berhasil dihapus!', 'success');
+  confirmDialog.value = false;
+}
 </script>
 
 <template>
@@ -177,17 +196,20 @@ const deleteSelected = async () => {
   <div>
     <h2>Daftar Diskon</h2>
     <div class="header-controls">
-      <md-outlined-text-field
-        v-model="searchQuery"
-        placeholder="Cari diskon..."
-        type="text"
-        class="search-field"
-        leading-icon="search"
-      ></md-outlined-text-field>
-      <md-outlined-select v-model="selectedOutlet" class="custom-select">
+      <div class="input-group rounded-pill" style="max-width: 550px;"  >
+        <span class="input-group-text">
+          <i class="bi bi-search"></i> <!-- pakai Bootstrap Icons -->
+        </span>
+        <input type="text" class="form-control" placeholder="Cari diskon...">
+      </div>
+      <!-- <md-outlined-select v-model="selectedOutlet" class="custom-select">
         <md-select-option value="kopi" selected>Kopi Anak Bangsa</md-select-option>
         <md-select-option value="link">https://crudcrud.com/api/e4448f5babfb4c8ab46cd28d79ffc109/discounts</md-select-option>
-      </md-outlined-select>
+      </md-outlined-select> -->
+      <select class="form-select custom-select" style="max-width: 200px;" >
+        <option value="kopi" selected>Kopi Anak Bangsa</option>
+        <option value="crudcrud">https://crudcrud.com/api/e4448f5babfb4c8ab46cd28d79ffc109/discounts</option>
+      </select>
     </div>
   </div>
 
@@ -205,8 +227,13 @@ const deleteSelected = async () => {
     <span>Tambah diskon</span>
     &ensp;
   </md-filled-button>
-  <md-filled-button v-else class="delete-button" @click="deleteSelected" style="background:#e53935;color:#fff;">
-     &ensp;
+<md-filled-button
+  v-else
+  class="delete-button"
+  @click="confirmDialog = true"
+  style="background:#e53935;color:#fff;"
+>
+  &ensp;
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -216,8 +243,8 @@ const deleteSelected = async () => {
   >
     <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
   </svg>
-     <span>Hapus</span> &ensp;
-  </md-filled-button>
+  <span>Hapus</span> &ensp;
+</md-filled-button>
 </header>
 
 
@@ -253,9 +280,16 @@ const deleteSelected = async () => {
     :form="editForm"
     :formValid="editFormValid"
     :nilaiLabel="editNilaiLabel"
-    @update:dialog="val => editDialog.value = val"
+    @update:dialog="val => editDialog = val"
     @submit="submitEditForm"
   />
+  <ConfirmModal
+  :dialog="confirmDialog"
+  title="Konfirmasi Hapus"
+  message="Apakah Anda yakin ingin menghapus diskon terpilih?"
+  @update:dialog="val => confirmDialog = val"
+  @confirm="handleConfirmDelete"
+/>
   <v-snackbar v-model="snackbar" :color="snackbarColor" timeout="3000" location="top right" rounded>
     {{ snackbarText }}
   </v-snackbar>
@@ -268,11 +302,34 @@ const deleteSelected = async () => {
   gap: 1rem;
   margin-top: 0.5rem;
 }
+
 .search-field {
+  display: flex;
+  align-items: center;
   min-width: 220px;
+  max-width: 300px;
+  flex: 1;
 }
+
+.input-group-text {
+  background: #f5f5f5;
+  border: none;
+  padding: 0 8px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+.form-control {
+  flex: 1;
+  min-width: 0;
+  height: 38px;
+}
+
 .custom-select {
-  min-width: 180px;
+  min-width: 140px;
+  max-width: 220px;
+  height: 38px;
 }
 </style>
 

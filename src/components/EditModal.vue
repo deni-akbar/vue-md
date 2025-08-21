@@ -23,6 +23,7 @@ defineExpose({ formRef: localFormRef })
         <v-card-text>
           <v-form ref="localFormRef" v-model="props.formValid">
             <v-text-field
+             variant="outlined"
               v-model="props.form.namaDiskon"
               label="Nama Diskon"
               :rules="[v => !!v || 'Nama Diskon tidak boleh kosong']"
@@ -32,6 +33,8 @@ defineExpose({ formRef: localFormRef })
             <v-row align="center" dense>
               <v-col cols="8">
                 <v-text-field
+                 variant="outlined"
+                 class="mt-3"
                   v-model="props.form.nilaiDiskon"
                   :label="props.nilaiLabel"
                   type="number"
@@ -50,7 +53,7 @@ defineExpose({ formRef: localFormRef })
               </v-col>
             </v-row>
           <v-card-actions class="pa-0">
-          <v-btn
+          <!-- <v-btn
             class="modal-button"
             color="primary"
             block
@@ -58,7 +61,14 @@ defineExpose({ formRef: localFormRef })
             @click="emit('submit')"
           >
             Simpan Perubahan
-          </v-btn>
+          </v-btn> -->
+          <button 
+            type="button" 
+            class="btn btn-success w-100 rounded-pill" 
+            @click="$emit('submit')"
+          >
+           <span class="text-light">Simpan</span> 
+          </button>
         </v-card-actions>
   </v-form>
         </v-card-text>
