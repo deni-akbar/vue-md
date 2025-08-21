@@ -44,12 +44,33 @@ defineExpose({ formRef: localFormRef })
                 ></v-text-field>
               </v-col>
               <v-col cols="4">
-                <v-switch
+                <!-- <v-switch
                   v-model="props.form.tipeDiskon"
                   :label="props.form.tipeDiskon === 'persen' ? '%' : 'Rp'"
                   :true-value="'persen'"
                   :false-value="'rp'"
-                ></v-switch>
+                ></v-switch> -->
+                <div class="btn-group mb-5" role="group" aria-label="Pilih tipe diskon">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="tipeDiskon"
+                  id="diskonPersen"
+                  value="persen"
+                  v-model="props.form.tipeDiskon"
+                />
+                <label class="btn btn-outline-success" for="diskonPersen">%</label>
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="tipeDiskon"
+                  id="diskonRp"
+                  value="rp"
+                  v-model="props.form.tipeDiskon"
+                />
+                <label class="btn btn-outline-success" for="diskonRp">Rp</label>
+              </div>
               </v-col>
             </v-row>
           <v-card-actions class="pa-0">

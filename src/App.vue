@@ -8,7 +8,7 @@ import ConfirmModal from './components/ConfirmModal.vue'
 
 const confirmDialog = ref(false)
 // Ganti dengan endpoint API kamu dari crudcrud.com
-const API_URL = 'https://crudcrud.com/api/e4448f5babfb4c8ab46cd28d79ffc109/discounts'
+const API_URL = 'https://crudcrud.com/api/06c6d82d5ef64e16a525035ae674c950/disc'
 
 const selectedOutlet = ref("kopi")
 const dialog = ref(false)
@@ -286,7 +286,7 @@ const handleConfirmDelete = async () => {
   <ConfirmModal
   :dialog="confirmDialog"
   title="Konfirmasi Hapus"
-  message="Apakah Anda yakin ingin menghapus diskon terpilih?"
+  message="Apakah Anda yakin ingin menghapus diskon yang dipilih?"
   @update:dialog="val => confirmDialog = val"
   @confirm="handleConfirmDelete"
 />
