@@ -8,7 +8,7 @@ import ConfirmModal from './components/ConfirmModal.vue'
 
 const confirmDialog = ref(false)
 // Ganti dengan endpoint API kamu dari crudcrud.com
-const API_URL = 'https://crudcrud.com/api/06c6d82d5ef64e16a525035ae674c950/disc'
+const API_URL = 'https://crudcrud.com/api/3a290f7e88d34b09b46679a831bf6a1e/disc'
 
 const selectedOutlet = ref("kopi")
 const dialog = ref(false)
