@@ -164,3 +164,16 @@ section {
 .delete-button:hover {
   --md-filled-button-container-color: #c62828; /* merah lebih gelap saat hover */
 }
+
+.btn-success{
+  background-color: #4CAF50 !important; /* hijau */
+}
+
+.btn-outline-success{
+  border-color: #4CAF50 !important; /* hijau */
+}
+
+.btn-check:checked + .btn-outline-success {
+  background-color: #4CAF50 !important; /* hijau saat checked */
+  color: #fff; /* teks putih */
+}
